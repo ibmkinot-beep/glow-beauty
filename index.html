@@ -3,24 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Glow Beauty</title>
+<title>Glow &amp; Beauty</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 
 <!--
   Cartão de link (Open Graph + Twitter).
   É este bloco que faz o link aparecer com imagem e descrição quando alguém
   cola no WhatsApp, no Instagram ou no Facebook. A imagem precisa ter 1200x630px
-  e ainda precisa ser criada em assets/img/cartao-link.jpg.
+  e fica em assets/img/cartao-link.jpg. Se comprar um domínio, troque o endereço
+  das linhas og:url e og:image.
 -->
-<meta name="description" content="Salões de cabelo, unhas, estética e bem-estar em São Paulo. Ache o espaço perto de você e chame no WhatsApp.">
+<meta name="description" content="Salões de cabelo, unhas, estética e bem-estar em São Paulo. Compare preço, nota e horário e chame direto no WhatsApp.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Glow Beauty">
-<meta property="og:title" content="Glow Beauty — beleza e bem-estar em São Paulo">
-<meta property="og:description" content="Ache o salão perto de você e chame no WhatsApp. Cabelo, unhas, estética e bem-estar.">
-<meta property="og:url" content="https://glowbeauty.com.br/">
-<meta property="og:image" content="https://glowbeauty.com.br/assets/img/cartao-link.jpg">
+<meta property="og:site_name" content="Glow &amp; Beauty">
+<meta property="og:title" content="Glow &amp; Beauty — compare os salões do seu bairro">
+<meta property="og:description" content="Compare preço, nota e horário dos salões perto de você e chame direto no WhatsApp.">
+<meta property="og:url" content="https://ibmkinot-beep.github.io/glow-beauty/">
+<meta property="og:image" content="https://ibmkinot-beep.github.io/glow-beauty/assets/img/cartao-link.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="pt_BR">
+<meta property="og:image:alt" content="Glow &amp; Beauty — compare os salões do seu bairro e chame no WhatsApp">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Karla:wght@300..800&display=swap">
@@ -690,10 +693,8 @@
   /* ---------- lojista ---------- */
 
   .lojista { border-top: 1px solid var(--linha); background: var(--glow-suave); }
-  .lojista-inner { padding-block: 2.8rem; display: grid; gap: 1rem; max-width: 40rem; }
   .lojista h2 { margin: 0; font-size: clamp(1.7rem, 4.5vw, 2.4rem); line-height: 1.08; }
   .lojista p { margin: 0; color: var(--mauve); max-width: 32rem; }
-  .lojista .btn { justify-self: start; padding-inline: 1.3rem; padding-block: .8rem; }
 
   /* ---------- rodapé ---------- */
 
@@ -812,6 +813,152 @@
 
   .toast-url:empty { display: none; }
 
+  /* ---------- como funciona ---------- */
+
+  .passos { padding-block: .4rem 2.4rem; }
+  .passos h2 { margin: .35rem 0 1.3rem; font-size: clamp(1.45rem, 3.4vw, 1.9rem); line-height: 1.15; }
+
+  .passos-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    counter-reset: passo;
+  }
+
+  .passos-lista li {
+    position: relative;
+    background: var(--vidro);
+    border: 1px solid var(--linha);
+    border-radius: var(--raio);
+    padding: 1.15rem 1.15rem 1.2rem;
+    box-shadow: var(--sombra);
+    display: grid;
+    gap: .35rem;
+    align-content: start;
+  }
+
+  .passo-num {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: var(--glow-suave);
+    color: var(--glow);
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: .2rem;
+  }
+
+  .passos-lista h3 { margin: 0; font-size: 1rem; font-weight: 700; }
+  .passos-lista p { margin: 0; font-size: .9rem; color: var(--mauve); }
+
+  .o-que-e {
+    margin-left: .5rem;
+    font-size: .7rem;
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: 600;
+    color: var(--glow);
+    white-space: nowrap;
+  }
+
+  /* ---------- serviços no cartão ---------- */
+
+  .servicos { font-size: .86rem; border-top: 1px dashed var(--linha-forte); padding-top: .45rem; }
+  .servicos summary { cursor: pointer; font-weight: 700; color: var(--glow); list-style: none; display: inline-flex; align-items: center; gap: .35rem; }
+  .servicos summary::-webkit-details-marker { display: none; }
+  .servicos summary::after { content: ""; width: .45rem; height: .45rem; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform .18s ease; }
+  .servicos[open] summary::after { transform: rotate(225deg) translate(-1px, -1px); }
+  .servicos ul { list-style: none; margin: .5rem 0 .35rem; padding: 0; display: grid; gap: .3rem; }
+  .servicos li { display: flex; justify-content: space-between; gap: .8rem; }
+  .servicos li span { color: var(--tinta); }
+  .servicos li b { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .servicos p { margin: 0; font-size: .74rem; color: var(--mauve); }
+
+  /* ---------- lojista: passos e relatório ---------- */
+
+  .lojista-grade {
+    padding-block: 3rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+    gap: 2.4rem;
+    align-items: center;
+  }
+
+  .lojista-texto { display: grid; gap: 1rem; }
+  .lojista-texto .btn { justify-self: start; padding-inline: 1.3rem; padding-block: .8rem; }
+
+  .lojista-passos { margin: 0; padding: 0; list-style: none; counter-reset: lp; display: grid; gap: .55rem; }
+  .lojista-passos li { counter-increment: lp; position: relative; padding-left: 2.1rem; color: var(--mauve); font-size: .95rem; }
+  .lojista-passos li::before {
+    content: counter(lp);
+    position: absolute;
+    left: 0;
+    top: .05rem;
+    width: 1.45rem;
+    height: 1.45rem;
+    border-radius: 999px;
+    background: var(--glow);
+    color: #fff;
+    font-size: .75rem;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+  }
+  .lojista-passos b { color: var(--tinta); }
+
+  .relatorio {
+    margin: 0;
+    background: var(--vidro);
+    border: 1px solid var(--linha-forte);
+    border-radius: 20px;
+    padding: 1.2rem 1.25rem 1.1rem;
+    box-shadow: var(--sombra-alta);
+    display: grid;
+    gap: .8rem;
+  }
+
+  .relatorio-cab { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+  .relatorio-titulo { font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--mauve); }
+  .relatorio-selo { font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--fechando); background: var(--fechando-bg); border-radius: 999px; padding: .2rem .55rem; }
+  .relatorio-nome { margin: 0; font-family: "Playfair Display", Georgia, serif; font-weight: 600; font-size: 1.15rem; }
+  .relatorio-numeros { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .6rem; }
+  .relatorio-numeros div { background: var(--papel-2); border-radius: 12px; padding: .65rem .7rem; }
+  .relatorio-numeros dt { font-size: .72rem; color: var(--mauve); line-height: 1.25; }
+  .relatorio-numeros dd { margin: .2rem 0 0; font-size: 1.45rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .relatorio-numeros div:nth-child(2) dd { color: var(--zap); }
+
+  .relatorio-grafico { height: 6.5rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: .7rem; align-items: end; padding-top: 1.1rem; border-bottom: 1px solid var(--linha-forte); }
+  .relatorio-grafico span { position: relative; height: var(--h); background: var(--zap); border-radius: 6px 6px 0 0; opacity: .85; }
+  .relatorio-grafico i { position: absolute; top: -1.2rem; left: 0; right: 0; text-align: center; font-style: normal; font-size: .72rem; font-weight: 700; color: var(--mauve); }
+  .relatorio-eixo { display: grid; grid-template-columns: repeat(4, 1fr); gap: .7rem; text-align: center; font-size: .72rem; color: var(--mauve); margin-top: -.4rem; }
+  .relatorio figcaption { font-size: .74rem; color: var(--mauve); }
+
+  /* ---------- perguntas frequentes ---------- */
+
+  .perguntas { border-top: 1px solid var(--linha); }
+  .perguntas-inner { padding-block: 2.8rem 3rem; max-width: 46rem; }
+  .perguntas h2 { margin: .35rem 0 1.2rem; font-size: clamp(1.6rem, 4vw, 2.2rem); }
+  .faq { display: grid; gap: .55rem; }
+  .faq details { background: var(--vidro); border: 1px solid var(--linha); border-radius: 14px; padding: 0 1.1rem; }
+  .faq details[open] { border-color: var(--linha-forte); box-shadow: var(--sombra); }
+  .faq summary { cursor: pointer; list-style: none; padding: .95rem 0; font-weight: 700; display: flex; justify-content: space-between; gap: 1rem; align-items: center; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; flex: none; width: 1.6rem; height: 1.6rem; border-radius: 999px; display: grid; place-items: center; background: var(--glow-suave); color: var(--glow); font-weight: 800; }
+  .faq details[open] summary::after { content: "−"; }
+  .faq p { margin: 0 0 1rem; color: var(--mauve); }
+  .faq a { color: var(--glow); }
+
+  @media (max-width: 860px) {
+    .passos-lista { grid-template-columns: 1fr; }
+    .lojista-grade { grid-template-columns: 1fr; }
+  }
+
   /* ---------- ordenar ---------- */
 
   .controles { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; }
@@ -839,6 +986,18 @@
   }
 
   .ordenar:focus-within { border-color: var(--glow); }
+
+  /* A lista que abre no select usa as cores do tema, no claro e no escuro. */
+  .ordenar select, .busca-bairro select { color-scheme: inherit; }
+  .ordenar select option, .busca-bairro select option {
+    background-color: var(--vidro);
+    color: var(--tinta);
+    font-weight: 600;
+  }
+  .ordenar select option:checked, .busca-bairro select option:checked {
+    background-color: var(--glow-suave);
+    color: var(--glow);
+  }
   .ordenar select:focus { outline: none; }
 
   /* ---------- cartão: fonte da nota, preço e comparar ---------- */
@@ -1004,6 +1163,7 @@
     .marca-nome { font-size: 1.12rem; }
     .favoritos-aba .rotulo-aba { display: none; }
     .janela { width: 168px; }
+    .vitrine-cab .dica { display: none; }
     .acoes { grid-template-columns: 1fr; }
     .rodape-grade { grid-template-columns: 1fr; gap: 1.6rem; }
     .cookies { flex-direction: column; align-items: stretch; }
@@ -1030,9 +1190,9 @@
 
 <div class="aviso">Protótipo em teste · os salões abaixo são exemplos e os números de WhatsApp ainda são fictícios.</div>
 
-<header class="topo">
+<header class="topo" id="topo">
   <div class="wrap topo-inner">
-    <a class="marca" href="#">
+    <a class="marca" href="#topo" aria-label="Glow &amp; Beauty — início">
       <svg class="marca-flor" width="24" height="24" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">
         <ellipse cx="16" cy="9.4" rx="3.5" ry="5.6"/>
         <ellipse cx="16" cy="9.4" rx="3.5" ry="5.6" transform="rotate(72 16 16)"/>
@@ -1061,14 +1221,14 @@
 <main>
   <section class="hero">
     <div class="wrap hero-inner">
-      <p class="hero-selo">Guia exclusivo de beleza &amp; estética</p>
-      <h1 class="display">Encontre os melhores estúdios de<br><em>autocuidado</em></h1>
+      <p class="hero-selo">Vitrine de beleza · São Paulo</p>
+      <h1 class="display">Compare os salões do seu bairro<br><em>antes de marcar</em></h1>
       <p class="hero-sub">Compare preço, nota e horário de salões, clínicas de estética e esmalterias perto de você — e chame direto no WhatsApp.</p>
 
       <div class="busca">
         <div class="busca-campo">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-          <input id="busca" type="search" placeholder="Busque por nome, bairro, especialidade ou serviço" aria-label="Buscar salão ou serviço">
+          <input id="busca" type="search" placeholder="Ex.: escova, unha em gel, massagem, Pinheiros" aria-label="Buscar salão ou serviço">
           <button class="limpar-busca" id="limparBusca" type="button" hidden>Limpar</button>
         </div>
         <span class="busca-divisor" aria-hidden="true"></span>
@@ -1084,9 +1244,33 @@
     </div>
   </section>
 
+  <section class="passos" id="como-funciona" aria-labelledby="tituloPassos">
+    <div class="wrap">
+      <p class="eyebrow">Como funciona</p>
+      <h2 class="display" id="tituloPassos">Escolher salão sem ir no chute.</h2>
+      <ol class="passos-lista">
+        <li>
+          <span class="passo-num" aria-hidden="true">1</span>
+          <h3>Busque perto de você</h3>
+          <p>Filtre por bairro, categoria ou pelo serviço que você quer fazer.</p>
+        </li>
+        <li>
+          <span class="passo-num" aria-hidden="true">2</span>
+          <h3>Compare antes de escolher</h3>
+          <p>Marque até 3 lugares e veja preço, nota do Google e horário lado a lado.</p>
+        </li>
+        <li>
+          <span class="passo-num" aria-hidden="true">3</span>
+          <h3>Chame direto no WhatsApp</h3>
+          <p>A conversa é com o próprio espaço. Você não paga nada ao Glow &amp; Beauty e não precisa de cadastro.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
   <section class="vitrine">
     <div class="wrap vitrine-cab">
-      <p class="eyebrow">Na vitrine</p>
+      <p class="eyebrow">Destaques patrocinados <a class="o-que-e" href="#perguntas" data-abrir="faq-patrocinado">o que é isso?</a></p>
       <span class="dica">arraste para o lado →</span>
     </div>
     <div class="rua" id="rua" role="list"></div>
@@ -1113,27 +1297,90 @@
     <div class="grade" id="grade"></div>
   </section>
 
-  <section class="lojista" id="lojista">
-    <div class="wrap lojista-inner">
-      <p class="eyebrow">Para donos de salão</p>
-      <h2 class="display">Coloque seu espaço na vitrine.</h2>
-      <p>Sua página com fotos, serviços e botão de WhatsApp direto — mais o relatório de quantas pessoas clicaram para te chamar neste mês.</p>
-      <ul class="lojista-lista">
-        <li><b>1º mês grátis</b>, sem cartão e sem fidelidade.</li>
-        <li><b>A gente monta a sua página:</b> você só manda fotos, serviços, preços e horário.</li>
-        <li><b>Só dados do seu negócio</b> aparecem no site, com a sua autorização.</li>
-      </ul>
-      <a class="btn btn-zap" id="zapLojista" href="#" target="_blank" rel="noopener" data-clique="lojista">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.24h.01c5.5 0 9.96-4.46 9.96-9.96 0-2.66-1.04-5.16-2.92-7.04A9.88 9.88 0 0 0 12.04 2Zm0 18.13h-.01a8.27 8.27 0 0 1-4.21-1.15l-.3-.18-3.09.81.82-3.01-.2-.31a8.24 8.24 0 0 1-1.26-4.4c0-4.56 3.71-8.27 8.28-8.27 2.21 0 4.29.86 5.85 2.43a8.22 8.22 0 0 1 2.42 5.85c0 4.57-3.71 8.23-8.3 8.23Zm4.54-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.06s.89 2.39 1.01 2.56c.12.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29Z"/></svg>
-        Quero meu 1º mês grátis
-      </a>
+  <section class="lojista" id="lojista" aria-labelledby="tituloLojista">
+    <div class="wrap lojista-grade">
+      <div class="lojista-texto">
+        <p class="eyebrow">Para donos de salão</p>
+        <h2 class="display" id="tituloLojista">Coloque seu espaço na vitrine.</h2>
+        <p>Uma página com fotos, serviços, preços e botão de WhatsApp direto para você. Quem procura chega já sabendo o que você faz e quanto custa.</p>
+        <ol class="lojista-passos">
+          <li><b>Chame a gente no WhatsApp</b> e conte o nome e o bairro do seu espaço.</li>
+          <li><b>Mande fotos, serviços, preços e horário</b> e autorize a publicação por escrito.</li>
+          <li><b>A gente monta a sua página</b> e te mostra antes de ir ao ar. Nada é publicado sem o seu ok.</li>
+          <li><b>Você muda ou tira o que quiser</b>, quando quiser, sem custo.</li>
+        </ol>
+        <ul class="lojista-lista">
+          <li><b>1º mês grátis</b>, sem cartão e sem fidelidade.</li>
+          <li><b>Só dados do seu negócio</b> aparecem no site. Nada de dados pessoais.</li>
+        </ul>
+        <a class="btn btn-zap" id="zapLojista" href="#" target="_blank" rel="noopener" data-clique="lojista">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.24h.01c5.5 0 9.96-4.46 9.96-9.96 0-2.66-1.04-5.16-2.92-7.04A9.88 9.88 0 0 0 12.04 2Zm0 18.13h-.01a8.27 8.27 0 0 1-4.21-1.15l-.3-.18-3.09.81.82-3.01-.2-.31a8.24 8.24 0 0 1-1.26-4.4c0-4.56 3.71-8.27 8.28-8.27 2.21 0 4.29.86 5.85 2.43a8.22 8.22 0 0 1 2.42 5.85c0 4.57-3.71 8.23-8.3 8.23Zm4.54-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.06s.89 2.39 1.01 2.56c.12.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29Z"/></svg>
+          Quero meu 1º mês grátis
+        </a>
+      </div>
+
+      <figure class="relatorio" aria-labelledby="legendaRelatorio">
+        <div class="relatorio-cab">
+          <span class="relatorio-titulo">Relatório do mês</span>
+          <span class="relatorio-selo">Exemplo</span>
+        </div>
+        <p class="relatorio-nome">Studio Marcela · outubro</p>
+        <dl class="relatorio-numeros">
+          <div><dt>Visitas ao seu cartão</dt><dd>412</dd></div>
+          <div><dt>Cliques no WhatsApp</dt><dd>58</dd></div>
+          <div><dt>Pedidos de rota</dt><dd>21</dd></div>
+        </dl>
+        <div class="relatorio-grafico" role="img" aria-label="Cliques no WhatsApp por semana: 9, 14, 17 e 18">
+          <span style="--h:50%"><i>9</i></span><span style="--h:78%"><i>14</i></span><span style="--h:94%"><i>17</i></span><span style="--h:100%"><i>18</i></span>
+        </div>
+        <div class="relatorio-eixo"><span>sem 1</span><span>sem 2</span><span>sem 3</span><span>sem 4</span></div>
+        <figcaption id="legendaRelatorio">Números ilustrativos. O relatório mensal está em fase de testes e conta cliques sem identificar quem clicou.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="perguntas" id="perguntas" aria-labelledby="tituloPerguntas">
+    <div class="wrap perguntas-inner">
+      <p class="eyebrow">Perguntas frequentes</p>
+      <h2 class="display" id="tituloPerguntas">Tudo às claras.</h2>
+
+      <div class="faq">
+        <details>
+          <summary>O Glow &amp; Beauty cobra alguma coisa de quem procura um salão?</summary>
+          <p>Não. Buscar, comparar e chamar um espaço é grátis e não precisa de cadastro.</p>
+        </details>
+        <details>
+          <summary>Eu agendo e pago pelo site?</summary>
+          <p>Não. O site mostra o espaço e abre a conversa no WhatsApp. Horário, pagamento e o serviço em si são combinados direto com o salão, que é o responsável pelo atendimento.</p>
+        </details>
+        <details>
+          <summary>De onde vêm as notas e as avaliações?</summary>
+          <p>Do Google. Em cada espaço tem um link para você ler as avaliações originais. O Glow &amp; Beauty não cria nem edita avaliações.</p>
+        </details>
+        <details id="faq-patrocinado">
+          <summary>O que quer dizer "Patrocinado"?</summary>
+          <p>São espaços que pagam para aparecer primeiro na vitrine. Eles sempre levam o selo "Patrocinado". Pagar não muda a nota, os preços nem a ordem quando você escolhe "Menor preço" ou "Melhor nota".</p>
+        </details>
+        <details>
+          <summary>Os preços estão atualizados?</summary>
+          <p>Os preços são "a partir de" e informados pelo próprio espaço. O valor final pode mudar conforme o cabelo, a técnica ou o produto, então confirme na conversa antes de marcar.</p>
+        </details>
+        <details>
+          <summary>Vocês guardam meus dados?</summary>
+          <p>Não pedimos nome, telefone nem e-mail. Suas preferências (tema, favoritos) ficam só no seu navegador. Os detalhes estão na <a href="privacidade.html">Política de privacidade</a>.</p>
+        </details>
+        <details>
+          <summary>Tenho um salão. Como peço para corrigir ou tirar meu espaço?</summary>
+          <p>Fale com a gente pelo WhatsApp. A alteração ou a remoção é feita sem custo e sem burocracia.</p>
+        </details>
+      </div>
     </div>
   </section>
 
   <footer class="rodape">
     <div class="wrap rodape-grade">
       <div class="rodape-marca">
-        <a class="marca" href="#">
+        <a class="marca" href="#topo" aria-label="Glow &amp; Beauty — início">
           <svg class="marca-flor" width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">
             <ellipse cx="16" cy="9.4" rx="3.5" ry="5.6"/>
             <ellipse cx="16" cy="9.4" rx="3.5" ry="5.6" transform="rotate(72 16 16)"/>
@@ -1149,29 +1396,29 @@
 
       <nav class="rodape-col" aria-label="Para seu espaço">
         <h3>Para seu espaço</h3>
-        <a href="#">Como funciona</a>
+        <a href="#lojista">Como funciona para o salão</a>
         <a href="#lojista">Cadastrar espaço</a>
-        <a href="#lojista">Aparecer na vitrine</a>
-        <a href="#">Perguntas frequentes</a>
+        <a href="#perguntas">Perguntas frequentes</a>
       </nav>
 
-      <nav class="rodape-col" aria-label="Glow Beauty">
-        <h3>Glow Beauty</h3>
-        <a href="#">Falar com a gente</a>
-        <a href="#">Privacidade</a>
-        <a href="#">Termos de uso</a>
+      <nav class="rodape-col" aria-label="Glow &amp; Beauty">
+        <h3>Glow &amp; Beauty</h3>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#" id="zapRodape" target="_blank" rel="noopener" data-clique="contato">Falar com a gente</a>
+        <a href="privacidade.html">Política de privacidade</a>
+        <a href="termos.html">Termos de uso</a>
       </nav>
     </div>
 
     <div class="wrap rodape-base">
-      <span>© <span id="ano">2026</span> Glow Beauty · São Paulo/SP</span>
+      <span>© <span id="ano">2026</span> Glow &amp; Beauty · São Paulo/SP</span>
       <span>O agendamento e o pagamento acontecem direto com o espaço.</span>
     </div>
   </footer>
 </main>
 
 <div class="cookies" id="cookies" role="region" aria-label="Aviso de cookies" hidden>
-  <p><b>Usamos cookies para medir cliques.</b> Assim cada espaço sabe quantas pessoas o chamaram no WhatsApp pelo site. Não vendemos seus dados nem exibimos anúncios. <a href="#">Ver política de privacidade</a></p>
+  <p><b>Sua privacidade.</b> O site guarda no seu navegador só o tema e os favoritos. Se você aceitar, ele também conta os cliques nos botões de WhatsApp e rota, sem identificar você. Não vendemos dados. <a href="privacidade.html">Política de privacidade</a></p>
   <div class="cookies-botoes">
     <button class="btn btn-fantasma" type="button" id="cookiesEssencial">Só o essencial</button>
     <button class="btn btn-aceitar" type="button" id="cookiesAceitar">Aceitar</button>
@@ -1215,16 +1462,16 @@
   // O resumo de horários exibido no site é gerado a partir daqui, para não haver
   // dois lugares dizendo coisas diferentes sobre o mesmo espaço.
   const SALOES = [
-    { slug: "studio-marcela", nome: "Studio Marcela", bairro: "Pinheiros", endereco: "R. dos Pinheiros, 1200 — São Paulo/SP", categorias: ["cabelo"], destaque: true, nota: 4.8, avaliacoes: 212, grade: { 2: ["09:00","19:00"], 3: ["09:00","19:00"], 4: ["09:00","19:00"], 5: ["09:00","19:00"], 6: ["09:00","19:00"] }, preco: 90, precoBase: "Corte feminino a partir de R$ 90", whatsapp: "5511900000001", c1: "#D6255C", c2: "#7E0F35" },
-    { slug: "atelie-rosa-nails", nome: "Ateliê Rosa Nails", bairro: "Vila Madalena", endereco: "R. Harmonia, 480 — São Paulo/SP", categorias: ["unhas"], destaque: true, nota: 4.9, avaliacoes: 386, grade: { 1: ["10:00","20:00"], 2: ["10:00","20:00"], 3: ["10:00","20:00"], 4: ["10:00","20:00"], 5: ["10:00","20:00"], 6: ["10:00","20:00"] }, preco: 160, precoBase: "Alongamento em gel a partir de R$ 160", whatsapp: "5511900000002", c1: "#F07FA4", c2: "#B33F6B" },
-    { slug: "casa-serena", nome: "Casa Serena", bairro: "Perdizes", endereco: "R. Cardoso de Almeida, 910 — São Paulo/SP", categorias: ["bemestar"], destaque: true, nota: 4.7, avaliacoes: 148, grade: { 1: ["08:00","21:00"], 2: ["08:00","21:00"], 3: ["08:00","21:00"], 4: ["08:00","21:00"], 5: ["08:00","21:00"] }, preco: 180, precoBase: "Massagem relaxante 60min a partir de R$ 180", whatsapp: "5511900000003", c1: "#4E9182", c2: "#1E4C44" },
-    { slug: "bella-pelle", nome: "Bella Pelle Estética", bairro: "Moema", endereco: "Av. Moaci, 320 — São Paulo/SP", categorias: ["estetica"], destaque: true, nota: 4.6, avaliacoes: 97, grade: { 2: ["09:00","18:00"], 3: ["09:00","18:00"], 4: ["09:00","18:00"], 5: ["09:00","18:00"], 6: ["09:00","18:00"] }, preco: 210, precoBase: "Limpeza de pele a partir de R$ 210", whatsapp: "5511900000004", c1: "#E08B3C", c2: "#8A4A15" },
-    { slug: "navalha-de-ouro", nome: "Barbearia Navalha de Ouro", bairro: "Tatuapé", endereco: "R. Serra de Bragança, 155 — São Paulo/SP", categorias: ["cabelo"], destaque: false, nota: 4.9, avaliacoes: 531, grade: { 1: ["09:00","20:00"], 2: ["09:00","20:00"], 3: ["09:00","20:00"], 4: ["09:00","20:00"], 5: ["09:00","20:00"], 6: ["09:00","20:00"] }, preco: 75, precoBase: "Corte + barba a partir de R$ 75", whatsapp: "5511900000005", c1: "#3B5182", c2: "#1B2543" },
-    { slug: "sobrancelha-e-cia", nome: "Sobrancelha & Cia", bairro: "Santana", endereco: "R. Voluntários da Pátria, 2100 — São Paulo/SP", categorias: ["unhas"], destaque: false, nota: 4.5, avaliacoes: 74, grade: { 1: ["09:00","19:00"], 2: ["09:00","19:00"], 3: ["09:00","19:00"], 4: ["09:00","19:00"], 5: ["09:00","19:00"], 6: ["09:00","19:00"] }, preco: 55, precoBase: "Design de sobrancelha a partir de R$ 55", whatsapp: "5511900000006", c1: "#9159A8", c2: "#4C2660" },
-    { slug: "zen-massoterapia", nome: "Zen Massoterapia", bairro: "Itaim Bibi", endereco: "R. João Cachoeira, 640 — São Paulo/SP", categorias: ["bemestar"], destaque: false, nota: 4.8, avaliacoes: 203, grade: { 1: ["07:00","22:00"], 2: ["07:00","22:00"], 3: ["07:00","22:00"], 4: ["07:00","22:00"], 5: ["07:00","22:00"] }, preco: 150, precoBase: "Drenagem linfática a partir de R$ 150", whatsapp: "5511900000007", c1: "#6FA08E", c2: "#31574B" },
-    { slug: "glam-hair-studio", nome: "Glam Hair Studio", bairro: "Pinheiros", endereco: "R. Teodoro Sampaio, 1730 — São Paulo/SP", categorias: ["cabelo", "unhas"], destaque: false, nota: 4.4, avaliacoes: 119, grade: { 0: ["10:00","20:00"], 2: ["10:00","20:00"], 3: ["10:00","20:00"], 4: ["10:00","20:00"], 5: ["10:00","20:00"], 6: ["10:00","20:00"] }, preco: 380, precoBase: "Mechas a partir de R$ 380", whatsapp: "5511900000008", c1: "#A06A4A", c2: "#5A3422" },
-    { slug: "espaco-lotus", nome: "Espaço Lótus", bairro: "Vila Mariana", endereco: "R. Domingos de Morais, 1400 — São Paulo/SP", categorias: ["estetica", "bemestar"], destaque: false, nota: 4.7, avaliacoes: 165, grade: { 1: ["09:00","20:00"], 2: ["09:00","20:00"], 3: ["09:00","20:00"], 4: ["09:00","20:00"], 5: ["09:00","20:00"], 6: ["09:00","20:00"] }, preco: 120, precoBase: "Depilação a laser a partir de R$ 120", whatsapp: "5511900000009", c1: "#C0417E", c2: "#6B1B44" },
-    { slug: "nail-bar-sp", nome: "Nail Bar SP", bairro: "Moema", endereco: "Al. dos Arapanés, 880 — São Paulo/SP", categorias: ["unhas"], destaque: false, nota: 4.3, avaliacoes: 58, grade: { 1: ["10:00","21:00"], 2: ["10:00","21:00"], 3: ["10:00","21:00"], 4: ["10:00","21:00"], 5: ["10:00","21:00"], 6: ["10:00","21:00"] }, preco: 85, precoBase: "Manicure + pedicure a partir de R$ 85", whatsapp: "5511900000010", c1: "#D24B3E", c2: "#7A1E17" }
+    { slug: "studio-marcela", nome: "Studio Marcela", bairro: "Pinheiros", endereco: "R. dos Pinheiros, 1200 — São Paulo/SP", categorias: ["cabelo"], destaque: true, nota: 4.8, avaliacoes: 212, grade: { 2: ["09:00","19:00"], 3: ["09:00","19:00"], 4: ["09:00","19:00"], 5: ["09:00","19:00"], 6: ["09:00","19:00"] }, preco: 90, precoBase: "Corte feminino a partir de R$ 90", servicos: [["Corte feminino", 90], ["Escova", 60], ["Hidratação", 80], ["Coloração", 180]], whatsapp: "5511900000001", c1: "#D6255C", c2: "#7E0F35" },
+    { slug: "atelie-rosa-nails", nome: "Ateliê Rosa Nails", bairro: "Vila Madalena", endereco: "R. Harmonia, 480 — São Paulo/SP", categorias: ["unhas"], destaque: true, nota: 4.9, avaliacoes: 386, grade: { 1: ["10:00","20:00"], 2: ["10:00","20:00"], 3: ["10:00","20:00"], 4: ["10:00","20:00"], 5: ["10:00","20:00"], 6: ["10:00","20:00"] }, preco: 160, precoBase: "Alongamento em gel a partir de R$ 160", servicos: [["Alongamento em gel", 160], ["Manicure", 40], ["Pedicure", 45], ["Esmaltação em gel", 70]], whatsapp: "5511900000002", c1: "#F07FA4", c2: "#B33F6B" },
+    { slug: "casa-serena", nome: "Casa Serena", bairro: "Perdizes", endereco: "R. Cardoso de Almeida, 910 — São Paulo/SP", categorias: ["bemestar"], destaque: true, nota: 4.7, avaliacoes: 148, grade: { 1: ["08:00","21:00"], 2: ["08:00","21:00"], 3: ["08:00","21:00"], 4: ["08:00","21:00"], 5: ["08:00","21:00"] }, preco: 180, precoBase: "Massagem relaxante 60min a partir de R$ 180", servicos: [["Massagem relaxante 60min", 180], ["Quick massage 20min", 70], ["Reflexologia", 120]], whatsapp: "5511900000003", c1: "#4E9182", c2: "#1E4C44" },
+    { slug: "bella-pelle", nome: "Bella Pelle Estética", bairro: "Moema", endereco: "Av. Moaci, 320 — São Paulo/SP", categorias: ["estetica"], destaque: true, nota: 4.6, avaliacoes: 97, grade: { 2: ["09:00","18:00"], 3: ["09:00","18:00"], 4: ["09:00","18:00"], 5: ["09:00","18:00"], 6: ["09:00","18:00"] }, preco: 210, precoBase: "Limpeza de pele a partir de R$ 210", servicos: [["Limpeza de pele", 210], ["Drenagem linfática", 140], ["Peeling", 250]], whatsapp: "5511900000004", c1: "#E08B3C", c2: "#8A4A15" },
+    { slug: "navalha-de-ouro", nome: "Barbearia Navalha de Ouro", bairro: "Tatuapé", endereco: "R. Serra de Bragança, 155 — São Paulo/SP", categorias: ["cabelo"], destaque: false, nota: 4.9, avaliacoes: 531, grade: { 1: ["09:00","20:00"], 2: ["09:00","20:00"], 3: ["09:00","20:00"], 4: ["09:00","20:00"], 5: ["09:00","20:00"], 6: ["09:00","20:00"] }, preco: 75, precoBase: "Corte + barba a partir de R$ 75", servicos: [["Corte + barba", 75], ["Corte", 50], ["Barba", 35], ["Pigmentação", 40]], whatsapp: "5511900000005", c1: "#3B5182", c2: "#1B2543" },
+    { slug: "sobrancelha-e-cia", nome: "Sobrancelha & Cia", bairro: "Santana", endereco: "R. Voluntários da Pátria, 2100 — São Paulo/SP", categorias: ["unhas"], destaque: false, nota: 4.5, avaliacoes: 74, grade: { 1: ["09:00","19:00"], 2: ["09:00","19:00"], 3: ["09:00","19:00"], 4: ["09:00","19:00"], 5: ["09:00","19:00"], 6: ["09:00","19:00"] }, preco: 55, precoBase: "Design de sobrancelha a partir de R$ 55", servicos: [["Design de sobrancelha", 55], ["Design com henna", 70], ["Depilação de buço", 25], ["Lash lifting", 150]], whatsapp: "5511900000006", c1: "#9159A8", c2: "#4C2660" },
+    { slug: "zen-massoterapia", nome: "Zen Massoterapia", bairro: "Itaim Bibi", endereco: "R. João Cachoeira, 640 — São Paulo/SP", categorias: ["bemestar"], destaque: false, nota: 4.8, avaliacoes: 203, grade: { 1: ["07:00","22:00"], 2: ["07:00","22:00"], 3: ["07:00","22:00"], 4: ["07:00","22:00"], 5: ["07:00","22:00"] }, preco: 150, precoBase: "Drenagem linfática a partir de R$ 150", servicos: [["Drenagem linfática", 150], ["Massagem modeladora", 160], ["Ventosaterapia", 120]], whatsapp: "5511900000007", c1: "#6FA08E", c2: "#31574B" },
+    { slug: "glam-hair-studio", nome: "Glam Hair Studio", bairro: "Pinheiros", endereco: "R. Teodoro Sampaio, 1730 — São Paulo/SP", categorias: ["cabelo", "unhas"], destaque: false, nota: 4.4, avaliacoes: 119, grade: { 0: ["10:00","20:00"], 2: ["10:00","20:00"], 3: ["10:00","20:00"], 4: ["10:00","20:00"], 5: ["10:00","20:00"], 6: ["10:00","20:00"] }, preco: 380, precoBase: "Mechas a partir de R$ 380", servicos: [["Mechas", 380], ["Corte feminino", 110], ["Escova", 70], ["Manicure", 45]], whatsapp: "5511900000008", c1: "#A06A4A", c2: "#5A3422" },
+    { slug: "espaco-lotus", nome: "Espaço Lótus", bairro: "Vila Mariana", endereco: "R. Domingos de Morais, 1400 — São Paulo/SP", categorias: ["estetica", "bemestar"], destaque: false, nota: 4.7, avaliacoes: 165, grade: { 1: ["09:00","20:00"], 2: ["09:00","20:00"], 3: ["09:00","20:00"], 4: ["09:00","20:00"], 5: ["09:00","20:00"], 6: ["09:00","20:00"] }, preco: 120, precoBase: "Depilação a laser a partir de R$ 120", servicos: [["Depilação a laser", 120], ["Limpeza de pele", 190], ["Massagem relaxante", 170]], whatsapp: "5511900000009", c1: "#C0417E", c2: "#6B1B44" },
+    { slug: "nail-bar-sp", nome: "Nail Bar SP", bairro: "Moema", endereco: "Al. dos Arapanés, 880 — São Paulo/SP", categorias: ["unhas"], destaque: false, nota: 4.3, avaliacoes: 58, grade: { 1: ["10:00","21:00"], 2: ["10:00","21:00"], 3: ["10:00","21:00"], 4: ["10:00","21:00"], 5: ["10:00","21:00"], 6: ["10:00","21:00"] }, preco: 85, precoBase: "Manicure + pedicure a partir de R$ 85", servicos: [["Manicure + pedicure", 85], ["Manicure", 45], ["Esmaltação em gel", 75]], whatsapp: "5511900000010", c1: "#D24B3E", c2: "#7A1E17" }
   ];
 
   const NOME_CATEGORIA = {
@@ -1234,10 +1481,11 @@
     bemestar: "Bem-estar"
   };
 
-  const MENSAGEM = "Oi! Vi vocês no Glow Beauty e queria agendar";
-  // Troque pelo WhatsApp do Glow Beauty (55 + DDD + número, só dígitos).
+  const MENSAGEM = "Oi! Vi vocês no Glow & Beauty e queria agendar";
+  // Troque pelo WhatsApp do Glow & Beauty (55 + DDD + número, só dígitos).
   const ZAP_GLOW = "5511900000000";
-  const MENSAGEM_LOJISTA = "Oi! Tenho um espaço de beleza e quero o 1º mês grátis no Glow Beauty";
+  const MENSAGEM_LOJISTA = "Oi! Tenho um espaço de beleza e quero o 1º mês grátis no Glow & Beauty";
+  const MENSAGEM_CONTATO = "Oi! Tenho uma dúvida sobre o Glow & Beauty";
   const MAX_COMPARAR = 3;
   const CHAVE_FAVORITOS = "glow-beauty:favoritos";
   const CHAVE_TEMA = "glow-beauty:tema";
@@ -1333,6 +1581,7 @@
     soAbertos: false,
     ordem: "relevancia",
     comparar: [],
+    servicosAbertos: new Set(),
     favoritos: lerFavoritos()
   };
 
@@ -1367,6 +1616,7 @@
     ano: document.getElementById("ano")
   };
 
+  const escaparHTML = (t) => t.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const semAcento = (s) => s.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
   const linkZap = (numero, mensagem) => "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensagem);
   // Rota no Google Maps a partir de onde a pessoa está (no celular abre o app do Maps).
@@ -1413,7 +1663,7 @@
       <button class="janela" role="listitem" type="button" style="--c1:${s.c1};--c2:${s.c2}" data-ir="${s.slug}">
         <span class="janela-luz"></span>
         <span class="janela-inicial">${s.nome.charAt(0)}</span>
-        <span class="selo">${ICONE_FLOR} Destaque</span>
+        <span class="selo">${ICONE_FLOR} Patrocinado</span>
         <span class="janela-texto">
           <span class="janela-nome">${s.nome}</span>
           <span class="janela-bairro">${ICONE_ESTRELA_CLARA} ${notaBR(s.nota)} · ${s.bairro}</span>
@@ -1438,20 +1688,82 @@
     el.abaFavoritos.setAttribute("aria-pressed", String(estado.soFavoritos));
   }
 
+  /* ---------- busca por palavra-chave ---------- */
+
+  // Palavras que a cliente costuma digitar, ligadas a cada categoria.
+  // Para ensinar a busca uma palavra nova, é só incluir na lista certa.
+  const PALAVRAS_CHAVE = {
+    cabelo: ["cabelo", "cabeleireiro", "cabeleireira", "salao", "corte", "escova", "progressiva", "alisamento",
+      "chapinha", "mechas", "luzes", "reflexo", "coloracao", "tintura", "pintar", "hidratacao", "cauterizacao",
+      "botox capilar", "cachos", "cacheado", "tranca", "penteado", "barba", "barbearia", "barbeiro", "degrade", "pigmentacao"],
+    unhas: ["unha", "manicure", "pedicure", "esmalte", "esmaltacao", "gel", "alongamento", "fibra", "nail",
+      "sobrancelha", "design", "henna", "cilios", "lash", "extensao de cilios", "buco"],
+    estetica: ["estetica", "pele", "limpeza de pele", "peeling", "acne", "laser", "depilacao", "cera",
+      "harmonizacao", "botox", "skincare", "facial", "corporal", "drenagem"],
+    bemestar: ["massagem", "spa", "day spa", "relaxante", "relaxar", "massoterapia", "quick massage",
+      "reflexologia", "ventosa", "ventosaterapia", "drenagem", "modeladora", "pedras quentes", "bem-estar"]
+  };
+
+  const PALAVRAS_VAZIAS = new Set(["de", "da", "do", "das", "dos", "e", "em", "no", "na", "nos", "nas", "para", "pra",
+    "com", "um", "uma", "perto", "mim", "aqui", "quero", "fazer", "lugar", "bom", "boa", "melhor", "barato"]);
+
+  const separar = (texto) => semAcento(texto).split(/[^a-z0-9]+/).filter((w) => w.length >= 2 && !PALAVRAS_VAZIAS.has(w));
+
+  // "escova" acha "escova"; "cabel" acha "cabelo"; "unhas" acha "unha".
+  const casa = (digitada, palavra) =>
+    digitada === palavra ||
+    (digitada.length >= 3 && palavra.startsWith(digitada)) ||
+    (palavra.length >= 4 && digitada.startsWith(palavra));
+
+  const casaAlguma = (digitada, lista) => lista.some((palavra) => casa(digitada, palavra));
+
+  // Índice de palavras de cada espaço, montado uma vez só.
+  SALOES.forEach((s) => {
+    s._servicos = separar(s.servicos.map((x) => x[0]).join(" "));
+    s._nome = separar(s.nome);
+    s._bairro = separar(s.bairro);
+    s._categoria = separar(s.categorias.map((c) => NOME_CATEGORIA[c] + " " + PALAVRAS_CHAVE[c].join(" ")).join(" "));
+  });
+
+  // Pontua quanto um espaço combina com a busca. 0 = não aparece.
+  // Para cada palavra digitada:
+  //  - se algum espaço tem um serviço com esse nome ("escova"), só aparecem os que oferecem o serviço;
+  //  - se nenhum tem ("progressiva"), aparecem os da categoria ligada à palavra (Cabelo).
+  function pontuarBusca(termo) {
+    const digitadas = separar(termo);
+    if (!digitadas.length) return null;
+    const temServico = digitadas.map((w) => SALOES.some((s) => casaAlguma(w, s._servicos)));
+    const pontos = new Map();
+    SALOES.forEach((s) => {
+      let total = 0;
+      for (let i = 0; i < digitadas.length; i++) {
+        const w = digitadas[i];
+        let melhor = 0;
+        if (casaAlguma(w, s._servicos)) melhor = 5;
+        else if (casaAlguma(w, s._nome)) melhor = 4;
+        else if (casaAlguma(w, s._bairro)) melhor = 3;
+        else if (!temServico[i] && casaAlguma(w, s._categoria)) melhor = 2;
+        if (!melhor) return pontos.set(s.slug, 0);
+        total += melhor;
+      }
+      pontos.set(s.slug, total);
+    });
+    return pontos;
+  }
+
   function filtrar() {
-    const termo = semAcento(estado.termo.trim());
+    const pontos = pontuarBusca(estado.termo);
     return SALOES.filter((s) => {
       if (estado.soFavoritos && !estado.favoritos.has(s.slug)) return false;
       if (estado.soAbertos && !statusAgora(s.grade).aberto) return false;
       if (estado.categoria !== "todos" && !s.categorias.includes(estado.categoria)) return false;
       if (estado.bairro !== "todos" && s.bairro !== estado.bairro) return false;
-      if (!termo) return true;
-      const alvo = semAcento([s.nome, s.bairro, s.precoBase, ...s.categorias.map((c) => NOME_CATEGORIA[c])].join(" "));
-      return alvo.includes(termo);
+      return !pontos || pontos.get(s.slug) > 0;
     }).sort((a, b) => {
       if (estado.ordem === "preco") return a.preco - b.preco || b.nota - a.nota;
       if (estado.ordem === "nota") return b.nota - a.nota || b.avaliacoes - a.avaliacoes;
-      return Number(b.destaque) - Number(a.destaque) || b.nota - a.nota;
+      const porBusca = pontos ? pontos.get(b.slug) - pontos.get(a.slug) : 0;
+      return porBusca || Number(b.destaque) - Number(a.destaque) || b.nota - a.nota;
     });
   }
 
@@ -1459,7 +1771,7 @@
     const lista = filtrar();
 
     el.contagem.innerHTML = lista.length
-      ? `<b>${lista.length}</b> ${lista.length === 1 ? "lugar" : "lugares"}${estado.soFavoritos ? " nos seus favoritos" : " encontrados"}`
+      ? `<b>${lista.length}</b> ${lista.length === 1 ? "lugar" : "lugares"}${estado.soFavoritos ? " nos seus favoritos" : estado.termo.trim() ? ` para “${escaparHTML(estado.termo.trim())}”` : " encontrados"}`
       : "";
 
     if (!lista.length) {
@@ -1469,7 +1781,9 @@
           <h3>${semFavoritos ? "Sua lista está vazia." : "Nada por aqui ainda."}</h3>
           <p>${semFavoritos
             ? "Toque no coração de um lugar para guardar aqui e achar rápido depois."
-            : "Nenhum lugar bate com esses filtros. Tente outro bairro ou veja a lista completa."}</p>
+            : estado.termo.trim()
+              ? `Ainda não achamos nada para “${escaparHTML(estado.termo.trim())}”. Tente outra palavra, como “corte”, “manicure” ou “massagem”.`
+              : "Nenhum lugar bate com esses filtros. Tente outro bairro ou veja a lista completa."}</p>
           <button class="btn btn-limpar" type="button" id="limparTudo">Ver todos os lugares</button>
         </div>`;
       document.getElementById("limparTudo").addEventListener("click", limparTudo);
@@ -1484,7 +1798,7 @@
       <article class="cartao${comparando ? " marcado" : ""}" id="salao-${s.slug}" style="--c1:${s.c1};--c2:${s.c2}">
         <span class="esmalte"></span>
         <div class="cartao-foto">
-          ${s.destaque ? `<span class="selo">${ICONE_FLOR} Destaque</span>` : ""}
+          ${s.destaque ? `<span class="selo">${ICONE_FLOR} Patrocinado</span>` : ""}
           <span class="cartao-inicial">${s.nome.charAt(0)}</span>
           <button class="coracao" type="button" data-fav="${s.slug}" aria-pressed="${salvo}"
             aria-label="${salvo ? "Remover" : "Salvar"} ${s.nome} dos favoritos">${ICONE_CORACAO}</button>
@@ -1500,6 +1814,11 @@
           <span class="status status-${status.tipo}" title="${resumoHorarios(s.grade)}">${status.texto}</span>
           <div class="tags">${s.categorias.map((c) => `<span class="tag">${NOME_CATEGORIA[c]}</span>`).join("")}</div>
           <p class="preco">${servicoDe(s)} a partir de <b>${reais(s.preco)}</b></p>
+          <details class="servicos" data-serv="${s.slug}"${estado.servicosAbertos.has(s.slug) ? " open" : ""}>
+            <summary>Ver todos os serviços (${s.servicos.length})</summary>
+            <ul>${s.servicos.map(([nome, valor]) => `<li><span>${nome}</span><b>${reais(valor)}</b></li>`).join("")}</ul>
+            <p>Preços "a partir de", informados pelo espaço. Confirme na conversa.</p>
+          </details>
           <button class="btn-comparar" type="button" data-cmp="${s.slug}" aria-pressed="${comparando}"><span class="caixa">${ICONE_CHECK}</span>Comparar</button>
           <div class="acoes">
             <a class="btn btn-zap" href="${linkZap(s.whatsapp, MENSAGEM)}" target="_blank" rel="noopener" data-clique="whatsapp" data-slug="${s.slug}">${ICONE_ZAP} Chamar no WhatsApp</a>
@@ -1557,6 +1876,7 @@
     const linhas = [
       ["Preço", (s) => `${servicoDe(s)}<br>a partir de <b>${reais(s.preco)}</b>`, (s) => s.preco === menorPreco],
       ["Nota", (s) => `<span class="nota">${ICONE_ESTRELA} ${notaBR(s.nota)}</span> <span class="fonte-mini">(${s.avaliacoes} no Google)</span>`, (s) => s.nota === maiorNota],
+      ["Outros serviços", (s) => s.servicos.slice(1).map(([nome, valor]) => `${nome}: <b>${reais(valor)}</b>`).join("<br>") || "—"],
       ["Agora", (s) => statusAgora(s.grade).texto],
       ["Horário", (s) => resumoHorarios(s.grade).replaceAll(" · ", "<br>")],
       ["Bairro", (s) => s.bairro],
@@ -1720,10 +2040,27 @@
     cartao.classList.add("piscar");
   }
 
+  // Lembra quais listas de serviços estão abertas, para a grade poder se redesenhar sem fechá-las.
+  document.addEventListener("toggle", (e) => {
+    const d = e.target;
+    if (!d.matches || !d.matches("details[data-serv]")) return;
+    if (d.open) estado.servicosAbertos.add(d.dataset.serv);
+    else estado.servicosAbertos.delete(d.dataset.serv);
+  }, true);
+
+  // "o que é isso?" abre a pergunta certa do FAQ.
+  document.querySelectorAll("[data-abrir]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const alvo = document.getElementById(link.dataset.abrir);
+      if (alvo) alvo.open = true;
+    });
+  });
+
   /* ---------- início ---------- */
 
   el.ano.textContent = String(new Date().getFullYear());
   el.zapLojista.href = linkZap(ZAP_GLOW, MENSAGEM_LOJISTA);
+  document.getElementById("zapRodape").href = linkZap(ZAP_GLOW, MENSAGEM_CONTATO);
   aplicarTema(document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light");
   montarVitrine();
   montarChips();
