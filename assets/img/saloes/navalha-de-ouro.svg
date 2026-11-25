@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ilustração de exemplo">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3B5182"/><stop offset="1" stop-color="#1B2543"/></linearGradient></defs>
+<rect width="600" height="320" fill="url(#g)"/>
+<circle cx="258" cy="185" r="58" fill="#fff" fill-opacity="0.11"/><circle cx="541" cy="257" r="56" fill="#fff" fill-opacity="0.10"/><circle cx="508" cy="122" r="53" fill="#fff" fill-opacity="0.06"/>
+<rect y="288" width="600" height="32" fill="#000" fill-opacity=".14"/>
+  <ellipse cx="300" cy="150" rx="62" ry="78" fill="#FFFFFF" fill-opacity=".14" stroke="#FFFFFF" stroke-width="6"/>
+  <path d="M262 120a46 56 0 0 1 30-34" fill="none" stroke="#FFFFFF" stroke-opacity=".7" stroke-width="5" stroke-linecap="round"/>
+  <rect x="293" y="228" width="14" height="70" rx="7" fill="#FFFFFF" fill-opacity=".92"/>
+  <path d="M165 150 140 78M165 150 190 78" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <path d="M165 150 132 222M165 150 198 222" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <circle cx="124" cy="236" r="17" fill="none" stroke="#FFFFFF" stroke-width="6"/><circle cx="206" cy="236" r="17" fill="none" stroke="#FFFFFF" stroke-width="6"/>
+  <rect x="394" y="130" width="112" height="28" rx="8" fill="#FFFFFF" fill-opacity=".93"/>
+  <rect x="398" y="158" width="5" height="26" rx="2.5" fill="#FFFFFF" fill-opacity=".93"/>
+  <rect x="408" y="158" width="5" height="26" rx="2.5" fill="#FFFFFF" fill-opacity=".93"/>
+  <rect x="418" y="158" width="5" height="26" rx="2.5" fill="#FFFFFF" fill-opacity=".93"/>
+  <rect x="428" y="158" width="5" height="26" rx="2.5" fill="#FFFFFF" fill-opacity=".93"/>
+  <rect x="438" y="158" width="5" height="26" rx="2.5" fill="#FFFFFF" fill-opacity=".93"/>
+  <rect x="448" y="158" width="5" height="26" rx="2.5" fill="#FFFFFF" fill-opacity=".93"/>
+  <rect x="458" y="158" width="5" height="26" rx="2.5" fill="#FFFFFF" fill-opacity=".93"/>
+  <rect x="468" y="158" width="5" height="26" rx="2.5" fill="#FFFFFF" fill-opacity=".93"/>
+  <rect x="478" y="158" width="5" height="26" rx="2.5" fill="#FFFFFF" fill-opacity=".93"/>
+  <rect x="488" y="158" width="5" height="26" rx="2.5" fill="#FFFFFF" fill-opacity=".93"/>
+  <rect x="498" y="158" width="5" height="26" rx="2.5" fill="#FFFFFF" fill-opacity=".93"/>
+</svg>

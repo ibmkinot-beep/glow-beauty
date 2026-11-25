@@ -1145,6 +1145,18 @@
     .rodape-marca { grid-column: 1 / -1; }
   }
 
+
+  /* Ilustrações dos salões de exemplo */
+  .cartao-foto { height: 168px; overflow: hidden; }
+  .cartao-img, .janela-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .janela-img { opacity: .95; }
+  .janela-luz { z-index: 0; }
+  .janela-img { z-index: 0; }
+  .janela .selo, .janela-texto { position: relative; z-index: 2; }
+  .cartao-foto .selo, .cartao-foto .coracao, .cartao-foto .ilustrativa { z-index: 2; }
+  .cartao-foto::after { content: ""; position: absolute; inset: auto 0 0 0; height: 46%; background: linear-gradient(to top, rgba(0,0,0,.22), transparent); z-index: 1; pointer-events: none; }
+  .ilustrativa { position: absolute; left: .7rem; bottom: .55rem; font-size: .68rem; color: rgba(255,255,255,.92); letter-spacing: .01em; }
+
   @media (max-width: 720px) {
     .link-lojista { display: none; }
     .hero-inner h1 { white-space: normal; }
@@ -1152,7 +1164,7 @@
 
   @media (max-width: 640px) {
     .busca { flex-wrap: wrap; border-radius: 20px; padding: .6rem; }
-    .busca-campo { width: 100%; }
+    .busca-campo { flex: 1 1 100%; width: 100%; padding: .3rem .4rem; }
     .busca-divisor { display: none; }
     .busca-bairro { flex: 1; }
     .busca-bairro select { max-width: none; width: 100%; }
@@ -1244,30 +1256,6 @@
     </div>
   </section>
 
-  <section class="passos" id="como-funciona" aria-labelledby="tituloPassos">
-    <div class="wrap">
-      <p class="eyebrow">Como funciona</p>
-      <h2 class="display" id="tituloPassos">Escolher salão sem ir no chute.</h2>
-      <ol class="passos-lista">
-        <li>
-          <span class="passo-num" aria-hidden="true">1</span>
-          <h3>Busque perto de você</h3>
-          <p>Filtre por bairro, categoria ou pelo serviço que você quer fazer.</p>
-        </li>
-        <li>
-          <span class="passo-num" aria-hidden="true">2</span>
-          <h3>Compare antes de escolher</h3>
-          <p>Marque até 3 lugares e veja preço, nota do Google e horário lado a lado.</p>
-        </li>
-        <li>
-          <span class="passo-num" aria-hidden="true">3</span>
-          <h3>Chame direto no WhatsApp</h3>
-          <p>A conversa é com o próprio espaço. Você não paga nada ao Glow &amp; Beauty e não precisa de cadastro.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
   <section class="vitrine">
     <div class="wrap vitrine-cab">
       <p class="eyebrow">Destaques patrocinados <a class="o-que-e" href="#perguntas" data-abrir="faq-patrocinado">o que é isso?</a></p>
@@ -1295,6 +1283,30 @@
 
   <section class="wrap">
     <div class="grade" id="grade"></div>
+  </section>
+
+  <section class="passos" id="como-funciona" aria-labelledby="tituloPassos">
+    <div class="wrap">
+      <p class="eyebrow">Como funciona</p>
+      <h2 class="display" id="tituloPassos">Escolher salão sem ir no chute.</h2>
+      <ol class="passos-lista">
+        <li>
+          <span class="passo-num" aria-hidden="true">1</span>
+          <h3>Busque perto de você</h3>
+          <p>Filtre por bairro, categoria ou pelo serviço que você quer fazer.</p>
+        </li>
+        <li>
+          <span class="passo-num" aria-hidden="true">2</span>
+          <h3>Compare antes de escolher</h3>
+          <p>Marque até 3 lugares e veja preço, nota do Google e horário lado a lado.</p>
+        </li>
+        <li>
+          <span class="passo-num" aria-hidden="true">3</span>
+          <h3>Chame direto no WhatsApp</h3>
+          <p>A conversa é com o próprio espaço. Você não paga nada ao Glow &amp; Beauty e não precisa de cadastro.</p>
+        </li>
+      </ol>
+    </div>
   </section>
 
   <section class="lojista" id="lojista" aria-labelledby="tituloLojista">
@@ -1672,7 +1684,7 @@
     el.rua.innerHTML = SALOES.filter((s) => s.destaque).map((s) => `
       <button class="janela" role="listitem" type="button" style="--c1:${s.c1};--c2:${s.c2}" data-ir="${s.slug}">
         <span class="janela-luz"></span>
-        <span class="janela-inicial">${s.nome.charAt(0)}</span>
+        <img class="janela-img" src="assets/img/saloes/${s.slug}.svg" alt="" loading="lazy" width="600" height="320">
         <span class="selo">${ICONE_FLOR} Patrocinado</span>
         <span class="janela-texto">
           <span class="janela-nome">${s.nome}</span>
@@ -1809,7 +1821,8 @@
         <span class="esmalte"></span>
         <div class="cartao-foto">
           ${s.destaque ? `<span class="selo">${ICONE_FLOR} Patrocinado</span>` : ""}
-          <span class="cartao-inicial">${s.nome.charAt(0)}</span>
+          <img class="cartao-img" src="assets/img/saloes/${s.slug}.svg" alt="" loading="lazy" width="600" height="320">
+          <span class="ilustrativa">Ilustração de exemplo</span>
           <button class="coracao" type="button" data-fav="${s.slug}" aria-pressed="${salvo}"
             aria-label="${salvo ? "Remover" : "Salvar"} ${s.nome} dos favoritos">${ICONE_CORACAO}</button>
         </div>
