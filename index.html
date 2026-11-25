@@ -1204,7 +1204,7 @@
 
 <header class="topo" id="topo">
   <div class="wrap topo-inner">
-    <a class="marca" href="#topo" aria-label="Glow &amp; Beauty — início">
+    <a class="marca" href="./" aria-label="Glow &amp; Beauty — início">
       <svg class="marca-flor" width="24" height="24" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">
         <ellipse cx="16" cy="9.4" rx="3.5" ry="5.6"/>
         <ellipse cx="16" cy="9.4" rx="3.5" ry="5.6" transform="rotate(72 16 16)"/>
@@ -1392,7 +1392,7 @@
   <footer class="rodape">
     <div class="wrap rodape-grade">
       <div class="rodape-marca">
-        <a class="marca" href="#topo" aria-label="Glow &amp; Beauty — início">
+        <a class="marca" href="./" aria-label="Glow &amp; Beauty — início">
           <svg class="marca-flor" width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">
             <ellipse cx="16" cy="9.4" rx="3.5" ry="5.6"/>
             <ellipse cx="16" cy="9.4" rx="3.5" ry="5.6" transform="rotate(72 16 16)"/>
@@ -2082,6 +2082,14 @@
   /* ---------- início ---------- */
 
   el.ano.textContent = String(new Date().getFullYear());
+  // Clicar no logo volta ao início da página (o link antigo apontava para o próprio cabeçalho fixo).
+  document.querySelectorAll("a.marca").forEach((a) => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduz ? "auto" : "smooth" });
+    });
+  });
   el.zapLojista.href = linkZap(ZAP_GLOW, MENSAGEM_LOJISTA);
   document.getElementById("zapRodape").href = linkZap(ZAP_GLOW, MENSAGEM_CONTATO);
   aplicarTema(document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light");
