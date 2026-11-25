@@ -36,10 +36,10 @@
     --mauve: #8E7581;
     --linha: #F0E2DC;
     --linha-forte: #E3CFC8;
-    --glow: #D22A67;
-    --glow-suave: #FDEEF4;
-    --zap: #12A150;
-    --zap-escuro: #0C7A3C;
+    --glow: #BC2F72;
+    --glow-suave: #FBF0F4;
+    --zap: #0E5E44;
+    --zap-escuro: #0A4A36;
     --aberto: #157F4C;
     --aberto-bg: #E6F5EC;
     --fechando: #9A5B10;
@@ -65,7 +65,7 @@
     --mauve: #B79CA7;
     --linha: #35242E;
     --linha-forte: #46313C;
-    --glow: #FF6D9C;
+    --glow: #E8639A;
     --glow-suave: #3A1226;
     --zap: #25D366;
     --zap-escuro: #1BA851;
@@ -228,47 +228,46 @@
 
   /* ---------- hero ---------- */
 
-  .hero { position: relative; overflow: hidden; }
-
-  .hero::before {
-    content: "";
-    position: absolute;
-    inset: -10% -10% auto -10%;
-    height: 28rem;
-    background: radial-gradient(58% 60% at 50% 0%, var(--glow-suave) 0%, transparent 72%);
-    pointer-events: none;
-    z-index: 0;
+  /* Herói em foto de capa cheia, como no redesenho: texto claro sobre a imagem, selo de local no canto. */
+  .hero { position: relative; overflow: hidden; min-height: clamp(360px, 54vw, 480px); display: flex; align-items: center; }
+  .hero-foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero-veu {
+    position: absolute; inset: 0;
+    background: linear-gradient(100deg, rgba(20,8,14,.82) 0%, rgba(20,8,14,.6) 42%, rgba(20,8,14,.18) 78%);
   }
+  .hero-canto {
+    position: absolute; right: 1.4rem; bottom: 1.1rem; z-index: 1;
+    font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.85);
+  }
+  @media (max-width: 640px) { .hero-canto { display: none; } }
 
   .hero-inner {
     position: relative;
     z-index: 1;
     display: grid;
-    justify-items: center;
-    gap: 1.3rem;
-    text-align: center;
-    max-width: 62rem;
+    justify-items: start;
+    gap: 1rem;
+    text-align: left;
+    max-width: 34rem;
     padding-block: clamp(2.4rem, 6vw, 3.8rem) 2rem;
+    color: #fff;
   }
 
   .hero-selo {
-    margin: 0;
-    display: inline-flex;
-    align-items: center;
+    margin: 0 0 .2rem;
     font-size: .72rem;
     font-weight: 700;
-    letter-spacing: .13em;
+    letter-spacing: .14em;
     text-transform: uppercase;
-    color: var(--glow);
-    background: var(--glow-suave);
-    border: 1px solid color-mix(in srgb, var(--glow) 32%, transparent);
-    border-radius: 999px;
-    padding: .5rem 1.05rem;
+    color: #fff;
+    padding-left: 1.1rem;
+    position: relative;
   }
+  .hero-selo::before { content: ""; position: absolute; left: 0; top: .35em; width: .7rem; height: 2px; background: #fff; }
 
-  .hero-inner h1 { margin: 0; font-size: clamp(2rem, 4.4vw, 3.15rem); line-height: 1.1; white-space: nowrap; }
-  .hero-inner h1 em { font-style: italic; color: var(--glow); }
-  .hero-sub { margin: 0; max-width: 34rem; font-size: 1.03rem; color: var(--mauve); }
+  .hero-inner h1 { margin: 0; font-size: clamp(1.9rem, 4.6vw, 3.1rem); line-height: 1.14; color: #fff; }
+  .hero-inner h1 em { font-style: italic; font-weight: 500; }
+  .hero-sub { margin: 0; max-width: 30rem; font-size: 1rem; color: rgba(255,255,255,.88); }
 
   .busca {
     display: flex;
@@ -351,7 +350,7 @@
   .btn-buscar:hover { background: var(--zap-escuro); background: color-mix(in srgb, var(--glow) 80%, black); }
   .btn-buscar:active { transform: translateY(1px); }
 
-  .hero-inner .chips { justify-content: center; }
+.busca-faixa { background: var(--papel); padding-block: 1.4rem 1.6rem; border-bottom: 1px solid var(--linha); }
 
   .chip-icone { display: inline-flex; margin-right: .35rem; position: relative; top: -1px; }
   .chip-icone svg { width: 10px; height: 10px; }
@@ -445,7 +444,7 @@
     display: inline-flex;
     align-items: center;
     gap: .33rem;
-    background: rgba(255,255,255,.94);
+    background: #D8C2A8;
     color: #2A1620;
     font-size: .64rem;
     font-weight: 800;
@@ -476,7 +475,7 @@
   }
 
   .chip:hover { border-color: var(--glow); }
-  .chip[aria-pressed="true"] { background: var(--glow); border-color: var(--glow); color: #fff; }
+  .chip[aria-pressed="true"] { background: var(--tinta); border-color: var(--tinta); color: var(--papel); }
 
   .linha-controle {
     display: flex;
@@ -830,31 +829,23 @@
 
   .passos-lista li {
     position: relative;
-    background: var(--vidro);
-    border: 1px solid var(--linha);
-    border-radius: var(--raio);
-    padding: 1.15rem 1.15rem 1.2rem;
-    box-shadow: var(--sombra);
-    display: grid;
-    gap: .35rem;
-    align-content: start;
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    padding-block: .4rem;
   }
 
   .passo-num {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 999px;
-    display: grid;
-    place-items: center;
-    background: var(--glow-suave);
-    color: var(--glow);
+    flex: none;
     font-family: "Playfair Display", Georgia, serif;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: .2rem;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 2.1rem;
+    line-height: 1;
+    color: var(--glow);
   }
 
-  .passos-lista h3 { margin: 0; font-size: 1rem; font-weight: 700; }
+  .passos-lista h3 { margin: 0 0 .25rem; font-size: 1rem; font-weight: 700; }
   .passos-lista p { margin: 0; font-size: .9rem; color: var(--mauve); }
 
   .o-que-e {
@@ -1129,6 +1120,13 @@
   .comparar td.melhor { color: var(--aberto); font-weight: 700; }
   .comparar td.melhor::after { content: " ✓"; }
   .comparar td .btn { width: 100%; font-size: .82rem; padding: .5rem .6rem; }
+  .comparar td .btn + .btn { margin-top: .4rem; }
+  .comparar-mapa-todos { margin: 0 0 .8rem; }
+  .comparar-mapa-todos a {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font-size: .85rem; font-weight: 700; color: var(--glow);
+    text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--glow) 40%, transparent);
+  }
   .comparar .fonte-mini { color: var(--mauve); font-size: .8rem; font-weight: 400; }
   .comparar-nota { margin: 0; padding: .7rem 1.3rem 1rem; font-size: .76rem; color: var(--mauve); }
 
@@ -1269,15 +1267,22 @@
 
 <main>
   <section class="hero">
+    <img class="hero-foto" src="assets/img/editorial/salon-editorial.jpg" alt="" loading="eager">
+    <div class="hero-veu" aria-hidden="true"></div>
     <div class="wrap hero-inner">
-      <p class="hero-selo">Vitrine de beleza · São Paulo</p>
-      <h1 class="display">Compare os salões do seu bairro<br><em>antes de marcar</em></h1>
+      <p class="hero-selo">Beleza, bem-estar &amp; boas escolhas</p>
+      <h1 class="display">Glow <em>&amp;</em> Beauty<br><em>seu próximo momento de cuidado.</em></h1>
       <p class="hero-sub">Compare preço, nota e horário de salões, clínicas de estética e esmalterias perto de você — e chame direto no WhatsApp.</p>
+    </div>
+    <span class="hero-canto">São Paulo · beleza em cada bairro</span>
+  </section>
 
+  <section class="busca-faixa">
+    <div class="wrap">
       <div class="busca">
         <div class="busca-campo">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-          <input id="busca" type="search" placeholder="Ex.: escova, unha em gel, massagem, Pinheiros" aria-label="Buscar salão ou serviço">
+          <input id="busca" type="search" placeholder="Qual cuidado você procura? Corte, unha em gel, massagem..." aria-label="Buscar salão ou serviço">
           <button class="limpar-busca" id="limparBusca" type="button" hidden>Limpar</button>
         </div>
         <span class="busca-divisor" aria-hidden="true"></span>
@@ -1286,9 +1291,8 @@
             <option value="todos">Todos os bairros</option>
           </select>
         </div>
-        <button class="btn-buscar" id="botaoBuscar" type="button">Buscar</button>
+        <button class="btn-buscar" id="botaoBuscar" type="button">Encontrar espaços</button>
       </div>
-
       <div class="chips" id="chips" role="group" aria-label="Categorias"></div>
     </div>
   </section>
@@ -1328,17 +1332,17 @@
       <h2 class="display" id="tituloPassos">Escolher salão sem ir no chute.</h2>
       <ol class="passos-lista">
         <li>
-          <span class="passo-num" aria-hidden="true">1</span>
+          <span class="passo-num" aria-hidden="true">01</span>
           <h3>Busque perto de você</h3>
           <p>Filtre por bairro, categoria ou pelo serviço que você quer fazer.</p>
         </li>
         <li>
-          <span class="passo-num" aria-hidden="true">2</span>
+          <span class="passo-num" aria-hidden="true">02</span>
           <h3>Compare antes de escolher</h3>
           <p>Marque até 3 lugares e veja preço, nota do Google e horário lado a lado.</p>
         </li>
         <li>
-          <span class="passo-num" aria-hidden="true">3</span>
+          <span class="passo-num" aria-hidden="true">03</span>
           <h3>Chame direto no WhatsApp</h3>
           <p>A conversa é com o próprio espaço. Você não paga nada ao Glow &amp; Beauty e não precisa de cadastro.</p>
         </li>
@@ -1550,7 +1554,20 @@
     { slug: "unhas-da-saude", nome: "Unhas da Saúde", bairro: "Saúde", endereco: "R. Domingos de Morais, 2564 — São Paulo/SP", categorias: ["unhas"], destaque: false, nota: 4.6, avaliacoes: 64, grade: { 1: ["09:00","19:00"], 2: ["09:00","19:00"], 3: ["09:00","19:00"], 4: ["09:00","19:00"], 5: ["09:00","19:00"], 6: ["09:00","19:00"] }, preco: 35, precoBase: "Manicure a partir de R$ 35", servicos: [["Manicure", 35], ["Pedicure", 40], ["Esmaltação em gel", 65]], whatsapp: ZAP_DEMO, c1: "#F07FA4", c2: "#B33F6B" },
     { slug: "estetica-santo-amaro", nome: "Estética Santo Amaro", bairro: "Santo Amaro", endereco: "Av. Adolfo Pinheiro, 700 — São Paulo/SP", categorias: ["estetica"], destaque: false, nota: 4.5, avaliacoes: 71, grade: { 2: ["09:00","18:00"], 3: ["09:00","18:00"], 4: ["09:00","18:00"], 5: ["09:00","18:00"], 6: ["09:00","18:00"] }, preco: 130, precoBase: "Limpeza de pele a partir de R$ 130", servicos: [["Limpeza de pele", 130], ["Drenagem linfática", 110], ["Peeling", 180]], whatsapp: ZAP_DEMO, c1: "#E08B3C", c2: "#8A4A15" },
     { slug: "recanto-bem-estar", nome: "Recanto Bem-Estar", bairro: "Jabaquara", endereco: "R. Gentil de Moura, 300 — São Paulo/SP", categorias: ["bemestar"], destaque: false, nota: 4.7, avaliacoes: 52, grade: { 1: ["08:00","20:00"], 2: ["08:00","20:00"], 3: ["08:00","20:00"], 4: ["08:00","20:00"], 5: ["08:00","20:00"] }, preco: 110, precoBase: "Massagem relaxante 60min a partir de R$ 110", servicos: [["Massagem relaxante 60min", 110], ["Quick massage 20min", 50], ["Reflexologia", 90]], whatsapp: ZAP_DEMO, c1: "#4E9182", c2: "#1E4C44" },
-    { slug: "cabelo-e-cor-campo-belo", nome: "Cabelo & Cor Campo Belo", bairro: "Campo Belo", endereco: "Av. Santo Amaro, 4800 — São Paulo/SP", categorias: ["cabelo","unhas"], destaque: false, nota: 4.4, avaliacoes: 98, grade: { 2: ["10:00","20:00"], 3: ["10:00","20:00"], 4: ["10:00","20:00"], 5: ["10:00","20:00"], 6: ["10:00","20:00"] }, preco: 95, precoBase: "Corte feminino a partir de R$ 95", servicos: [["Corte feminino", 95], ["Escova", 60], ["Mechas", 320], ["Manicure", 40]], whatsapp: ZAP_DEMO, c1: "#A06A4A", c2: "#5A3422" }
+    { slug: "cabelo-e-cor-campo-belo", nome: "Cabelo & Cor Campo Belo", bairro: "Campo Belo", endereco: "Av. Santo Amaro, 4800 — São Paulo/SP", categorias: ["cabelo","unhas"], destaque: false, nota: 4.4, avaliacoes: 98, grade: { 2: ["10:00","20:00"], 3: ["10:00","20:00"], 4: ["10:00","20:00"], 5: ["10:00","20:00"], 6: ["10:00","20:00"] }, preco: 95, precoBase: "Corte feminino a partir de R$ 95", servicos: [["Corte feminino", 95], ["Escova", 60], ["Mechas", 320], ["Manicure", 40]], whatsapp: ZAP_DEMO, c1: "#A06A4A", c2: "#5A3422" },
+    { slug: "unhas-mirandopolis", nome: "Unhas do Bairro", bairro: "Mirandópolis", endereco: "R. Afonso Lopes de Baião, 220 — São Paulo/SP", categorias: ["unhas"], destaque: false, nota: 4.5, avaliacoes: 39, grade: { 1: ["09:00","19:00"], 2: ["09:00","19:00"], 3: ["09:00","19:00"], 4: ["09:00","19:00"], 5: ["09:00","19:00"], 6: ["09:00","19:00"] }, preco: 32, precoBase: "Manicure a partir de R$ 32", servicos: [["Manicure", 32], ["Pedicure", 36], ["Esmaltação em gel", 60]], whatsapp: ZAP_DEMO, c1: "#F07FA4", c2: "#B33F6B" },
+    { slug: "nail-spa-mirandopolis", nome: "Nail Spa Mirandópolis", bairro: "Mirandópolis", endereco: "Av. Engenheiro George Corbisier, 85 — São Paulo/SP", categorias: ["unhas"], destaque: false, nota: 4.8, avaliacoes: 112, grade: { 2: ["10:00","20:00"], 3: ["10:00","20:00"], 4: ["10:00","20:00"], 5: ["10:00","20:00"], 6: ["10:00","20:00"] }, preco: 95, precoBase: "Alongamento em fibra a partir de R$ 95", servicos: [["Alongamento em fibra", 95], ["Manicure", 45], ["Spa dos pés", 80]], whatsapp: ZAP_DEMO, c1: "#D24B3E", c2: "#7A1E17" },
+    { slug: "clinica-pele-viva", nome: "Clínica Pele Viva", bairro: "Mirandópolis", endereco: "R. Jacutinga, 180 — São Paulo/SP", categorias: ["estetica"], destaque: false, nota: 4.6, avaliacoes: 58, grade: { 2: ["09:00","18:00"], 3: ["09:00","18:00"], 4: ["09:00","18:00"], 5: ["09:00","18:00"], 6: ["09:00","18:00"] }, preco: 140, precoBase: "Limpeza de pele a partir de R$ 140", servicos: [["Limpeza de pele", 140], ["Peeling", 190], ["Microagulhamento", 260]], whatsapp: ZAP_DEMO, c1: "#E08B3C", c2: "#8A4A15" },
+    { slug: "spa-raizes", nome: "Spa Raízes", bairro: "Mirandópolis", endereco: "R. Catarino Guimarães, 410 — São Paulo/SP", categorias: ["bemestar"], destaque: false, nota: 4.7, avaliacoes: 66, grade: { 1: ["09:00","20:00"], 2: ["09:00","20:00"], 3: ["09:00","20:00"], 4: ["09:00","20:00"], 5: ["09:00","20:00"], 6: ["09:00","20:00"] }, preco: 120, precoBase: "Massagem relaxante 60min a partir de R$ 120", servicos: [["Massagem relaxante 60min", 120], ["Massagem com pedras quentes", 170], ["Quick massage", 55]], whatsapp: ZAP_DEMO, c1: "#6FA08E", c2: "#31574B" },
+    { slug: "studio-vertice", nome: "Studio Vértice", bairro: "Mirandópolis", endereco: "Av. Jabaquara, 2340 — São Paulo/SP", categorias: ["cabelo"], destaque: false, nota: 4.6, avaliacoes: 77, grade: { 2: ["09:00","19:00"], 3: ["09:00","19:00"], 4: ["09:00","19:00"], 5: ["09:00","19:00"], 6: ["09:00","19:00"] }, preco: 120, precoBase: "Mechas a partir de R$ 120", servicos: [["Mechas", 120], ["Corte feminino", 85], ["Escova", 55]], whatsapp: ZAP_DEMO, c1: "#D6255C", c2: "#7E0F35" },
+    { slug: "barbearia-vintage-sp", nome: "Barbearia Vintage SP", bairro: "Mirandópolis", endereco: "R. Manuel da Nóbrega, 760 — São Paulo/SP", categorias: ["cabelo"], destaque: false, nota: 4.9, avaliacoes: 201, grade: { 1: ["09:00","21:00"], 2: ["09:00","21:00"], 3: ["09:00","21:00"], 4: ["09:00","21:00"], 5: ["09:00","21:00"], 6: ["09:00","21:00"] }, preco: 60, precoBase: "Corte + barba a partir de R$ 60", servicos: [["Corte + barba", 60], ["Corte", 40], ["Barba", 28], ["Sobrancelha masculina", 20]], whatsapp: ZAP_DEMO, c1: "#3B5182", c2: "#1B2543" },
+    { slug: "nail-studio-pinheiros", nome: "Nail Studio Pinheiros", bairro: "Pinheiros", endereco: "R. Fradique Coutinho, 940 — São Paulo/SP", categorias: ["unhas"], destaque: false, nota: 4.7, avaliacoes: 140, grade: { 2: ["10:00","20:00"], 3: ["10:00","20:00"], 4: ["10:00","20:00"], 5: ["10:00","20:00"], 6: ["10:00","20:00"] }, preco: 80, precoBase: "Esmaltação em gel a partir de R$ 80", servicos: [["Esmaltação em gel", 80], ["Alongamento em gel", 150], ["Manicure", 42]], whatsapp: ZAP_DEMO, c1: "#F07FA4", c2: "#B33F6B" },
+    { slug: "pele-clara-estetica", nome: "Pele Clara Estética", bairro: "Pinheiros", endereco: "R. Capote Valente, 450 — São Paulo/SP", categorias: ["estetica"], destaque: false, nota: 4.5, avaliacoes: 63, grade: { 2: ["09:00","18:00"], 3: ["09:00","18:00"], 4: ["09:00","18:00"], 5: ["09:00","18:00"], 6: ["09:00","18:00"] }, preco: 165, precoBase: "Limpeza de pele a partir de R$ 165", servicos: [["Limpeza de pele", 165], ["Drenagem linfática facial", 130], ["Peeling", 220]], whatsapp: ZAP_DEMO, c1: "#E08B3C", c2: "#8A4A15" },
+    { slug: "espaco-boas-unhas", nome: "Espaço Boas Unhas", bairro: "Vila Madalena", endereco: "R. Wisard, 300 — São Paulo/SP", categorias: ["unhas"], destaque: false, nota: 4.4, avaliacoes: 47, grade: { 1: ["09:00","19:00"], 2: ["09:00","19:00"], 3: ["09:00","19:00"], 4: ["09:00","19:00"], 5: ["09:00","19:00"], 6: ["09:00","19:00"] }, preco: 48, precoBase: "Manicure + pedicure a partir de R$ 48", servicos: [["Manicure + pedicure", 48], ["Esmaltação em gel", 55]], whatsapp: ZAP_DEMO, c1: "#D24B3E", c2: "#7A1E17" },
+    { slug: "barber-vila-madalena", nome: "Barber Vila Madalena", bairro: "Vila Madalena", endereco: "R. Aspicuelta, 220 — São Paulo/SP", categorias: ["cabelo"], destaque: false, nota: 4.7, avaliacoes: 168, grade: { 1: ["09:00","20:00"], 2: ["09:00","20:00"], 3: ["09:00","20:00"], 4: ["09:00","20:00"], 5: ["09:00","20:00"], 6: ["09:00","20:00"] }, preco: 65, precoBase: "Corte + barba a partir de R$ 65", servicos: [["Corte + barba", 65], ["Corte", 45], ["Barba", 30]], whatsapp: ZAP_DEMO, c1: "#3B5182", c2: "#1B2543" },
+    { slug: "oasis-perdizes", nome: "Oásis Perdizes", bairro: "Perdizes", endereco: "R. Turiassu, 1200 — São Paulo/SP", categorias: ["bemestar"], destaque: false, nota: 4.6, avaliacoes: 48, grade: { 1: ["09:00","20:00"], 2: ["09:00","20:00"], 3: ["09:00","20:00"], 4: ["09:00","20:00"], 5: ["09:00","20:00"] }, preco: 95, precoBase: "Massagem relaxante 60min a partir de R$ 95", servicos: [["Massagem relaxante 60min", 95], ["Quick massage", 45]], whatsapp: ZAP_DEMO, c1: "#6FA08E", c2: "#31574B" },
+    { slug: "studio-capital", nome: "Studio Capital", bairro: "Perdizes", endereco: "R. Cardoso de Almeida, 540 — São Paulo/SP", categorias: ["cabelo"], destaque: false, nota: 4.5, avaliacoes: 91, grade: { 2: ["09:00","19:00"], 3: ["09:00","19:00"], 4: ["09:00","19:00"], 5: ["09:00","19:00"], 6: ["09:00","19:00"] }, preco: 100, precoBase: "Corte feminino a partir de R$ 100", servicos: [["Corte feminino", 100], ["Escova", 65], ["Hidratação", 90]], whatsapp: ZAP_DEMO, c1: "#D6255C", c2: "#7E0F35" },
+    { slug: "moema-derme", nome: "Clínica Moema Derme", bairro: "Moema", endereco: "Al. dos Arapanés, 300 — São Paulo/SP", categorias: ["estetica"], destaque: false, nota: 4.4, avaliacoes: 55, grade: { 2: ["09:00","18:00"], 3: ["09:00","18:00"], 4: ["09:00","18:00"], 5: ["09:00","18:00"], 6: ["09:00","18:00"] }, preco: 120, precoBase: "Limpeza de pele a partir de R$ 120", servicos: [["Limpeza de pele", 120], ["Peeling", 170]], whatsapp: ZAP_DEMO, c1: "#E08B3C", c2: "#8A4A15" }
   ];
 
   const NOME_CATEGORIA = {
@@ -1736,14 +1753,23 @@
   const ICONE_CHECK = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
   const ICONE_ESTRELA_CLARA = ICONE_ESTRELA.replace('fill="currentColor"', 'fill="currentColor" class="estrela-icone"');
 
+  // Foto editorial por categoria (vinda do redesenho que o Johnny aprovou no Lovable).
+  // Fotos de banco de imagens, uma por categoria — por isso o rótulo "Foto ilustrativa" em cada cartão.
+  const FOTO_CATEGORIA = (s) =>
+    s.categorias.includes("cabelo") && /barb/i.test(s.slug) ? "assets/img/editorial/barber-editorial.jpg"
+    : s.categorias.includes("cabelo") ? "assets/img/editorial/salon-editorial.jpg"
+    : s.categorias.includes("unhas") ? "assets/img/editorial/nails-editorial.jpg"
+    : "assets/img/editorial/spa-editorial.jpg";
+
+
   /* ---------- montagem ---------- */
 
   function montarVitrine() {
     el.rua.innerHTML = SALOES.filter((s) => s.destaque).map((s) => `
       <button class="janela" role="listitem" type="button" style="--c1:${s.c1};--c2:${s.c2}" data-ir="${s.slug}">
         <span class="janela-luz"></span>
-        <img class="janela-img" src="assets/img/saloes/${s.slug}.svg" alt="" loading="lazy" width="600" height="320">
-        <span class="selo">${ICONE_FLOR} Patrocinado</span>
+        <img class="janela-img" src="${FOTO_CATEGORIA(s)}" alt="" loading="lazy" width="900" height="600">
+        <span class="selo">DESTAQUE PATROCINADO</span>
         <span class="janela-texto">
           <span class="janela-nome">${s.nome}</span>
           <span class="janela-bairro">${ICONE_ESTRELA_CLARA} ${notaBR(s.nota)} · ${s.bairro}</span>
@@ -1878,9 +1904,9 @@
       <article class="cartao${comparando ? " marcado" : ""}" id="salao-${s.slug}" style="--c1:${s.c1};--c2:${s.c2}">
         <span class="esmalte"></span>
         <div class="cartao-foto">
-          ${s.destaque ? `<span class="selo">${ICONE_FLOR} Patrocinado</span>` : ""}
-          <img class="cartao-img" src="assets/img/saloes/${s.slug}.svg" alt="" loading="lazy" width="600" height="320">
-          <span class="ilustrativa">Ilustração de exemplo</span>
+          ${s.destaque ? `<span class="selo">DESTAQUE PATROCINADO</span>` : ""}
+          <img class="cartao-img" src="${FOTO_CATEGORIA(s)}" alt="" loading="lazy" width="900" height="600">
+          <span class="ilustrativa">Foto ilustrativa</span>
           <button class="coracao" type="button" data-fav="${s.slug}" aria-pressed="${salvo}"
             aria-label="${salvo ? "Remover" : "Salvar"} ${s.nome} dos favoritos">${ICONE_CORACAO}</button>
         </div>
@@ -1950,6 +1976,17 @@
     montarGrade();
   }
 
+  // Rota com todos os lugares comparados de uma vez (em vez de um mapa incorporado por lugar,
+  // que ficaria redundante com o botão "Como chegar" de cada cartão e pesaria na página).
+  const linkMapaComparacao = (lista) => {
+    const enderecos = lista.map((s) => s.endereco.replace(" — ", ", "));
+    const destino = enderecos[enderecos.length - 1];
+    const escalas = enderecos.slice(0, -1);
+    let url = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(destino);
+    if (escalas.length) url += "&waypoints=" + encodeURIComponent(escalas.join("|"));
+    return url;
+  };
+
   function montarComparacao() {
     const lista = estado.comparar.map((slug) => SALOES.find((s) => s.slug === slug));
     const menorPreco = Math.min(...lista.map((s) => s.preco));
@@ -1962,9 +1999,10 @@
       ["Horário", (s) => resumoHorarios(s.grade).replaceAll(" · ", "<br>")],
       ["Bairro", (s) => s.bairro],
       ["Serviços", (s) => s.categorias.map((c) => NOME_CATEGORIA[c]).join(", ")],
-      ["", (s) => `<a class="btn btn-zap" href="${linkZap(s.whatsapp, mensagemSalao(s))}" target="_blank" rel="noopener" data-clique="whatsapp" data-slug="${s.slug}">${ICONE_ZAP} WhatsApp</a>`]
+      ["", (s) => `<a class="btn btn-zap" href="${linkZap(s.whatsapp, mensagemSalao(s))}" target="_blank" rel="noopener" data-clique="whatsapp" data-slug="${s.slug}">${ICONE_ZAP} WhatsApp</a><a class="btn btn-mapa" href="${linkMapa(s.endereco)}" target="_blank" rel="noopener" data-clique="rota" data-slug="${s.slug}">${ICONE_MAPA} Como chegar</a>`]
     ];
     el.tabelaComparar.innerHTML = `
+      <p class="comparar-mapa-todos"><a href="${linkMapaComparacao(lista)}" target="_blank" rel="noopener">${ICONE_MAPA} Ver os ${lista.length} lugares no mapa</a></p>
       <table>
         <thead><tr><td></td>${lista.map((s) => `<th scope="col" style="--c1:${s.c1}"><span class="esmalte-mini"></span>${s.nome}</th>`).join("")}</tr></thead>
         <tbody>${linhas.map(([rotulo, valor, melhor]) => `
