@@ -1157,6 +1157,43 @@
   .cartao-foto::after { content: ""; position: absolute; inset: auto 0 0 0; height: 46%; background: linear-gradient(to top, rgba(0,0,0,.22), transparent); z-index: 1; pointer-events: none; }
   .ilustrativa { position: absolute; left: .7rem; bottom: .55rem; font-size: .68rem; color: rgba(255,255,255,.92); letter-spacing: .01em; }
 
+  /* Assistente guiado (sem IA, sem servidor): botão flutuante + painel com perguntas de múltipla escolha. */
+  .assistente { position: fixed; right: 1.1rem; bottom: 1.1rem; z-index: 60; }
+  .assistente-botao {
+    width: 56px; height: 56px; border-radius: 50%; border: 0; cursor: pointer;
+    display: grid; place-items: center; color: #fff;
+    background: linear-gradient(165deg, var(--glow) 0%, #7E0F35 100%);
+    box-shadow: var(--sombra-alta);
+  }
+  .assistente-botao:hover { transform: translateY(-2px); }
+  .assistente-painel {
+    position: absolute; right: 0; bottom: 68px; width: min(340px, calc(100vw - 2.2rem));
+    max-height: min(70vh, 560px); background: var(--vidro); border-radius: 18px;
+    box-shadow: var(--sombra-alta); border: 1px solid var(--linha); overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .assistente-painel[hidden] { display: none; }
+  .assistente-cabecalho {
+    display: flex; align-items: center; gap: .5rem; padding: .85rem 1rem;
+    background: linear-gradient(165deg, var(--glow) 0%, #7E0F35 100%); color: #fff; font-weight: 700;
+  }
+  .assistente-flor { display: inline-flex; }
+  .assistente-fechar { margin-left: auto; background: rgba(255,255,255,.16); border: 0; color: #fff; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; }
+  .assistente-corpo { padding: .9rem; overflow-y: auto; display: flex; flex-direction: column; gap: .6rem; }
+  .assistente-msg { background: var(--papel-2); border-radius: 14px 14px 14px 4px; padding: .6rem .8rem; font-size: .88rem; line-height: 1.4; color: var(--tinta); max-width: 92%; }
+  .assistente-opcoes { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .assistente-opcao {
+    border: 1px solid var(--linha-forte); background: var(--vidro); color: var(--tinta);
+    border-radius: 999px; padding: .4rem .75rem; font-size: .82rem; cursor: pointer;
+  }
+  .assistente-opcao:hover, .assistente-opcao:focus-visible { border-color: var(--glow); color: var(--glow); }
+  .assistente-opcao.assistente-zap { border-color: var(--zap); color: var(--zap-escuro); font-weight: 700; }
+  .assistente-reiniciar { align-self: flex-start; font-size: .78rem; color: var(--mauve); background: none; border: 0; cursor: pointer; text-decoration: underline; padding: .2rem 0; }
+  @media (max-width: 460px) {
+    .assistente { right: .7rem; bottom: .7rem; }
+    .assistente-painel { bottom: 64px; }
+  }
+
   @media (max-width: 720px) {
     .link-lojista { display: none; }
     .hero-inner h1 { white-space: normal; }
@@ -1455,6 +1492,27 @@
   <div class="comparar-rolagem" id="tabelaComparar"></div>
   <p class="comparar-nota">Preços "a partir de" informados pelo espaço. Notas e avaliações vêm do Google.</p>
 </dialog>
+
+
+<!-- Assistente guiado: ajuda quem tem pouca familiaridade com o site a achar um salão, sem IA e sem servidor. -->
+<div class="assistente" id="assistente">
+  <button class="assistente-botao" id="assistenteAbrir" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="assistentePainel" aria-label="Abrir ajuda para encontrar um salão">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v11H8l-4 4V5Z" stroke-linejoin="round"/><circle cx="9" cy="10.5" r="1" fill="currentColor" stroke="none"/><circle cx="12.5" cy="10.5" r="1" fill="currentColor" stroke="none"/><circle cx="16" cy="10.5" r="1" fill="currentColor" stroke="none"/></svg>
+  </button>
+
+  <div class="assistente-painel" id="assistentePainel" role="dialog" aria-modal="false" aria-labelledby="assistenteTitulo" hidden>
+    <div class="assistente-cabecalho">
+      <span class="assistente-flor" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1"><ellipse cx="16" cy="9.4" rx="3.5" ry="5.6"/><ellipse cx="16" cy="9.4" rx="3.5" ry="5.6" transform="rotate(72 16 16)"/><ellipse cx="16" cy="9.4" rx="3.5" ry="5.6" transform="rotate(144 16 16)"/><ellipse cx="16" cy="9.4" rx="3.5" ry="5.6" transform="rotate(216 16 16)"/><ellipse cx="16" cy="9.4" rx="3.5" ry="5.6" transform="rotate(288 16 16)"/></svg>
+      </span>
+      <span id="assistenteTitulo">Ajuda a encontrar</span>
+      <button class="assistente-fechar" id="assistenteFechar" type="button" aria-label="Fechar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="assistente-corpo" id="assistenteCorpo"></div>
+  </div>
+</div>
 
 <div class="toast" id="toast" role="status" aria-live="polite">
   <span class="toast-titulo" id="toastTitulo"></span>
@@ -2092,6 +2150,134 @@
   });
   el.zapLojista.href = linkZap(ZAP_GLOW, MENSAGEM_LOJISTA);
   document.getElementById("zapRodape").href = linkZap(ZAP_GLOW, MENSAGEM_CONTATO);
+
+  /* ---------- assistente guiado (botões, sem IA, sem servidor) ---------- */
+
+  (function iniciarAssistente() {
+    const painel = document.getElementById("assistentePainel");
+    const corpo = document.getElementById("assistenteCorpo");
+    const botaoAbrir = document.getElementById("assistenteAbrir");
+    const botaoFechar = document.getElementById("assistenteFechar");
+    let aberto = false;
+
+    function escapar(t) {
+      return String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    }
+
+    function msg(texto) {
+      const d = document.createElement("div");
+      d.className = "assistente-msg";
+      d.textContent = texto;
+      corpo.appendChild(d);
+    }
+
+    function opcoes(lista) {
+      const d = document.createElement("div");
+      d.className = "assistente-opcoes";
+      lista.forEach(([rotulo, acao, classe]) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "assistente-opcao" + (classe ? " " + classe : "");
+        b.textContent = rotulo;
+        b.addEventListener("click", acao);
+        d.appendChild(b);
+      });
+      corpo.appendChild(d);
+      corpo.scrollTop = corpo.scrollHeight;
+    }
+
+    function limparCorpo() {
+      corpo.innerHTML = "";
+    }
+
+    function botaoReiniciar() {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "assistente-reiniciar";
+      b.textContent = "Começar de novo";
+      b.addEventListener("click", telaInicial);
+      corpo.appendChild(b);
+    }
+
+    function irParaResultados(categoria, bairro) {
+      estado.categoria = categoria;
+      if (bairro) estado.bairro = bairro;
+      el.chips.querySelectorAll(".chip").forEach((c) => {
+        c.setAttribute("aria-pressed", String(c.dataset.cat === estado.categoria));
+      });
+      if (bairro) el.bairro.value = bairro;
+      montarGrade();
+      fecharAssistente();
+      el.grade.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function telaBairro(categoria) {
+      limparCorpo();
+      msg("Em qual bairro você quer procurar?");
+      const bairros = [...new Set(SALOES.map((s) => s.bairro))].sort((a, b) => a.localeCompare(b, "pt-BR"));
+      opcoes([
+        ["Todos os bairros", () => irParaResultados(categoria, "todos")],
+        ...bairros.map((b) => [b, () => irParaResultados(categoria, b)]),
+      ]);
+      botaoReiniciar();
+    }
+
+    function telaInicial() {
+      limparCorpo();
+      msg("Olá! Posso ajudar a encontrar um salão, uma esmalteria, uma clínica de estética ou um lugar para relaxar.");
+      msg("O que você procura?");
+      opcoes([
+        ["Cabelo", () => telaBairro("cabelo")],
+        ["Unhas & sobrancelha", () => telaBairro("unhas")],
+        ["Estética", () => telaBairro("estetica")],
+        ["Bem-estar", () => telaBairro("bemestar")],
+        ["Ver tudo", () => telaBairro("todos")],
+      ]);
+      const d = document.createElement("div");
+      d.className = "assistente-opcoes";
+      corpo.appendChild(d);
+      opcoes([
+        ["Como funciona?", telaComoFunciona],
+        ["Quero cadastrar meu espaço", telaLojista],
+        ["Falar com o Glow & Beauty", () => { window.open(linkZap(ZAP_GLOW, MENSAGEM_CONTATO), "_blank", "noopener"); }],
+      ]);
+    }
+
+    function telaComoFunciona() {
+      limparCorpo();
+      msg("Você escolhe o bairro e a categoria, compara até 3 lugares por preço, nota e horário, e chama o espaço direto no WhatsApp. Não tem cadastro nem pagamento pelo site.");
+      opcoes([["Buscar um salão agora", telaInicial]]);
+      botaoReiniciar();
+    }
+
+    function telaLojista() {
+      limparCorpo();
+      msg("Que ótimo! Me conte o nome e o bairro do seu espaço pelo WhatsApp que a gente cuida do cadastro.");
+      opcoes([
+        ["Chamar no WhatsApp", () => { window.open(linkZap(ZAP_GLOW, MENSAGEM_LOJISTA), "_blank", "noopener"); }, "assistente-zap"],
+      ]);
+      botaoReiniciar();
+    }
+
+    function abrirAssistente() {
+      aberto = true;
+      painel.hidden = false;
+      botaoAbrir.setAttribute("aria-expanded", "true");
+      telaInicial();
+    }
+
+    function fecharAssistente() {
+      aberto = false;
+      painel.hidden = true;
+      botaoAbrir.setAttribute("aria-expanded", "false");
+    }
+
+    botaoAbrir.addEventListener("click", () => (aberto ? fecharAssistente() : abrirAssistente()));
+    botaoFechar.addEventListener("click", fecharAssistente);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && aberto) fecharAssistente();
+    });
+  })();
   aplicarTema(document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light");
   montarVitrine();
   montarChips();
