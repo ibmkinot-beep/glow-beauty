@@ -1149,10 +1149,10 @@
   /* Ilustrações dos salões de exemplo */
   .cartao-foto { height: 168px; overflow: hidden; }
   .cartao-img, .janela-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .janela-img { opacity: .95; }
+  .janela-img { inset: 0 0 auto 0; height: 72%; -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent); mask-image: linear-gradient(to bottom, #000 72%, transparent); }
   .janela-luz { z-index: 0; }
   .janela-img { z-index: 0; }
-  .janela .selo, .janela-texto { position: relative; z-index: 2; }
+  .janela .selo, .janela-texto { z-index: 2; }
   .cartao-foto .selo, .cartao-foto .coracao, .cartao-foto .ilustrativa { z-index: 2; }
   .cartao-foto::after { content: ""; position: absolute; inset: auto 0 0 0; height: 46%; background: linear-gradient(to top, rgba(0,0,0,.22), transparent); z-index: 1; pointer-events: none; }
   .ilustrativa { position: absolute; left: .7rem; bottom: .55rem; font-size: .68rem; color: rgba(255,255,255,.92); letter-spacing: .01em; }
