@@ -4,7 +4,7 @@
 - [x] Botões de WhatsApp e "Como chegar" abrindo de verdade
 - [x] Comparar até 3 lugares, ordenar por preço e nota
 - [x] Nota com a fonte (Google) e link para as avaliações
-- [ ] Colocar o WhatsApp do Glow Beauty em `ZAP_GLOW` (index.html)
+- [x] Colocar o WhatsApp do Glow Beauty em `ZAP_GLOW` (index.html) — número de teste (pessoal), trocar pelo do projeto depois
 - [ ] Subir o projeto no GitHub e publicar no GitHub Pages
 
 ## Fase 2 · Conteúdo real
